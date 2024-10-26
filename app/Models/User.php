@@ -17,9 +17,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'username',
         'password',
+        'role_id',
     ];
 
     /**
@@ -29,9 +29,21 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get all the orders created by this user.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    
     /**
      * Get the attributes that should be cast.
      *
