@@ -25,7 +25,6 @@ class OrderController extends Controller
         $validated = $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'invoice_number' => 'required|string|unique:orders',
-            'fiscal_data' => 'required|string|max:255',
             'order_date' => 'required|date',
             'delivery_address' => 'required|string|max:255',
             'notes' => 'nullable|string',
@@ -47,7 +46,6 @@ class OrderController extends Controller
         $validated = $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'invoice_number' => 'required|string|unique:orders,invoice_number,' . $order->id,
-            'fiscal_data' => 'required|string|max:255',
             'order_date' => 'required|date',
             'delivery_address' => 'required|string|max:255',
             'notes' => 'nullable|string',
