@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
         User::factory()->create([
             'username' => 'admin',
             'password' => Hash::make('password123'),
+            'email' => 'user@example.com',
             'role_id' => Role::where('name', 'Sales')->first()->id, // Assign to 'Sales' role
         ]);
     }
