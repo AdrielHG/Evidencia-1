@@ -1,29 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\DeletedOrderController;
-
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Role routes
-Route::resource('roles', RoleController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// User routes
-Route::resource('users', UserController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-// Customer routes
-Route::resource('customers', CustomerController::class);
-
-// Order routes
-Route::resource('orders', OrderController::class);
-
-// Deleted Order routes (for restoring deleted orders)
-Route::get('deleted-orders', [DeletedOrderController::class, 'index'])->name('deleted-orders.index');
-Route::post('deleted-orders/{id}/restore', [DeletedOrderController::class, 'restore'])->name('deleted-orders.restore');
+require __DIR__.'/auth.php';
