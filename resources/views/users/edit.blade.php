@@ -10,6 +10,16 @@
     </div>
 
     <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password" required>
+    </div>
+    
+    <div class="form-group">
         <label for="role_id">Role</label>
         <select name="role_id" id="role_id" class="form-control" required>
             @foreach($roles as $role)

@@ -24,14 +24,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role_id' => 'required|exists:roles,id',
+            'username' => 'required|string|max:255|unique:App\Models\User,username',
+            'password' => 'required|string|min:8',
+            'email'    => 'required|string|max:250|unique:App\Models\User,email',
+            'role_id' => 'required|exists:App\Models\Role,id',
         ]);
 
         User::create([
             'username' => $validated['username'],
             'password' => Hash::make($validated['password']),
+            'email'    => $validated['email'],
             'role_id' => $validated['role_id'],
         ]);
 
@@ -47,8 +49,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
-            'role_id' => 'required|exists:roles,id',
+            'username' => 'required|string|max:255|unique:App\Models\User,username,' . $user->id,
+            'email'    => 'required|string|max:250|unique:App\Models\User,email,' . $user->id,
+            'password' => 'required|string|min:8',
+            'role_id' => 'required|exists:App\Models\Role,id',
         ]);
 
         $user->update($validated);
