@@ -21,6 +21,7 @@ class OrderFactory extends Factory
         return [
             'customer_id' => Customer::inRandomOrder()->first()->id,
             'invoice_number' => $this->faker->unique()->numerify('INV-#####'),
+            'fiscal_data' => $this->faker->text(50),
             'order_date' => $this->faker->dateTimeThisYear,
             'delivery_address' => $this->faker->address,
             'notes' => $this->faker->sentence,

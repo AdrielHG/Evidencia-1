@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('invoice_number')->unique();
+            $table->string('fiscal_data');
             $table->boolean('deletedOrder')->default(false);
             $table->dateTime('order_date');
             $table->string('delivery_address');
