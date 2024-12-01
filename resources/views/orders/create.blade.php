@@ -1,3 +1,9 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'Order Details')
+
+@section('content')
+
 <h1>Create Order</h1>
 
 <form action="{{ route('orders.store') }}" method="POST">
@@ -17,6 +23,11 @@
     </div>
 
     <div class="form-group">
+        <label for="fiscal_data">Fiscal Data</label>
+        <input type="text" name="fiscal_data" class="form-control" id="fiscal_data" required>
+    </div>
+
+    <div class="form-group">
         <label for="order_date">Order Date</label>
         <input type="datetime-local" name="order_date" class="form-control" id="order_date" required>
     </div>
@@ -32,8 +43,8 @@
     </div>
 
     <div class="form-group">
-        <label for="status">Status</label>
-        <select name="status" id="status" class="form-control" required>
+        <label for="order_status">Order Status</label>
+        <select name="order_status" id="order_status" class="form-control" required>
             <option value="Ordered">Ordered</option>
             <option value="In process">In process</option>
             <option value="In route">In route</option>
@@ -42,4 +53,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Create Order</button>
+    <a href="{{ route('orders.index') }}" class="btn btn-secondary">Back to Orders</a>
 </form>
+@endsection

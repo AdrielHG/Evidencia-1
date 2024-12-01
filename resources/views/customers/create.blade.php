@@ -1,3 +1,9 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'Customer Details')
+
+@section('content')
+
 <h1>Create Customer</h1>
 
 <form action="{{ route('customers.store') }}" method="POST">
@@ -18,4 +24,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Create Customer</button>
+    <a href="{{ route('customers.index') }}" class="btn btn-secondary">Back to Customers</a>
 </form>
+@endsection

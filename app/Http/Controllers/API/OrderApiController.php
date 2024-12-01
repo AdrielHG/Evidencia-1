@@ -8,21 +8,29 @@ use Illuminate\Http\Request;
 
 class OrderApiController extends Controller
 {
-    public function index(){
+    // Retrieve all orders
+    public function index()
+    {
         $orders = Order::all();
 
         return response()->json($orders);
     }
 
-    public function show($id){
-        $order = Order::find($id);
+    // Search for an order by customer_id and invoice_number
+    public function show($customer_id, $invoice_number)
+{
+    $order = Order::where('customer_id', $customer_id)
+                  ->where('invoice_number', $invoice_number)
+                  ->first();
 
-        if (!$order) {
-            return response()->json([
-                'message' => 'Order not found'
-            ], 404);    
-        }
-
-        return response()->json($order);
+    if (!$order) {
+        return response()->json([
+            'message' => 'Order not found'
+        ], 404);
     }
+
+    return response()->json($order);
+}
+
+
 }

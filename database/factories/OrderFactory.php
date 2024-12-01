@@ -20,12 +20,12 @@ class OrderFactory extends Factory
     {
         return [
             'customer_id' => Customer::inRandomOrder()->first()->id,
-            'invoice_number' => $this->faker->unique()->numerify('INV-#####'),
+            'invoice_number' => $this->faker->unique()->numerify('#####'),
             'fiscal_data' => $this->faker->text(50),
             'order_date' => $this->faker->dateTimeThisYear,
             'delivery_address' => $this->faker->address,
             'notes' => $this->faker->sentence,
-            'status' => $this->faker->randomElement(['Ordered', 'In Process', 'In Route', 'Delivered']),
+            'order_status' => $this->faker->randomElement(['Ordered', 'In Process', 'In Route', 'Delivered']),
         ];
     }
 }

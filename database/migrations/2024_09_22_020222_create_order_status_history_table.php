@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('order_status_history', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->enum('status', ['Ordered', 'In Process', 'In Route', 'Delivered']);
+            $table->enum('order_status', ['Ordered', 'In Process', 'In Route', 'Delivered']);
             $table->timestamp('status_changed_at');
             $table->timestamps();
         });

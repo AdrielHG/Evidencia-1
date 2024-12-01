@@ -1,3 +1,8 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'User Details')
+
+@section('content')
 <h1>Edit User</h1>
 
 <form action="{{ route('users.update', $user->id) }}" method="POST">
@@ -11,7 +16,7 @@
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" name="email" class="form-control" id="email" required>
+        <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}" required>
     </div>
 
     <div class="form-group">
@@ -29,4 +34,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Update User</button>
+    <a href="{{ route('users.index') }}" class="btn btn-secondary">Back to Users</a>
 </form>
+@endsection

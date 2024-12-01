@@ -1,3 +1,9 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'Roles Details')
+
+@section('content')
+
 <h1>Create Role</h1>
 
 <form action="{{ route('roles.store') }}" method="POST">
@@ -10,3 +16,4 @@
     <button type="submit" class="btn btn-primary">Create Role</button>
     <a href="{{ route('roles.index') }}" class="btn btn-secondary">Back to Roles</a>
 </form>
+@endsection

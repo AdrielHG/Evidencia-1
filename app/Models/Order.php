@@ -16,7 +16,7 @@ class Order extends Model
         'order_date',
         'delivery_address',
         'notes',
-        'status',
+        'order_status',
         'route_photo',
         'delivery_photo',
     ];

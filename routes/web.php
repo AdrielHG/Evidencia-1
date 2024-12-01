@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -10,6 +11,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api/orders', [OrderApiController::class, 'index']);
+
+
+Route::get('/api/orders/{customer_id}/{invoice_number}', [OrderApiController::class, 'show']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

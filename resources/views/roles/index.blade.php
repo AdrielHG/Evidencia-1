@@ -1,3 +1,9 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'Roles Details')
+
+@section('content')
+
 <h1>Roles</h1>
 
 <a href="{{ route('roles.create') }}" class="btn btn-primary">Create New Role</a>
@@ -27,3 +33,5 @@
         @endforeach
     </tbody>
 </table>
+
+@endsection

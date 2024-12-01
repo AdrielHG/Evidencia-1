@@ -22,18 +22,23 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'customer_id' => 'required|exists:customers,id',
-            'invoice_number' => 'required|string|unique:orders',
-            'fiscal_data'   => 'required|string|max:255',
-            'order_date' => 'required|date',
-            'delivery_address' => 'required|string|max:255',
-            'notes' => 'nullable|string',
-            'status' => 'required|string|in:Ordered,In Process,In Route,Delivered',
-        ]);
 
-        Order::create($validated);
+        Order::create([
+            'customer_id' => $request->customer_id,
+            'invoice_number' => $request->invoice_number,
+            'fiscal_data'   => $request->fiscal_data,
+            'order_date' => $request->order_date,
+            'delivery_address' => $request->delivery_address,
+            'notes' => $request->notes,
+            'order_status' => $request->order_status,
+        ]);
         return redirect()->route('orders.index')->with('success', 'Order created successfully');
+    }
+
+    public function show($id)
+    {
+        $order = Order::with(['customer'])->findOrFail($id); // Include relations if applicable
+        return view('orders.show', compact('order'));
     }
 
     public function edit(Order $order)
@@ -42,19 +47,20 @@ class OrderController extends Controller
         return view('orders.edit', compact('order', 'customers'));
     }
 
-    public function update(Request $request, Order $order)
+    public function update(Request $request, string $id)
     {
-        $validated = $request->validate([
-            'customer_id' => 'required|exists:customers,id',
-            'invoice_number' => 'required|string|unique:orders,invoice_number,' . $order->id,
-            'fiscal_data' => 'required|string|max:255',
-            'order_date' => 'required|date',
-            'delivery_address' => 'required|string|max:255',
-            'notes' => 'nullable|string',
-            'status' => 'required|string|in:Ordered,In Process,In Route,Delivered',
-        ]);
+        $order = Order::find($id);
 
-        $order->update($validated);
+        $order->update([
+            'customer_id' => $request->customer_id,
+            'invoice_number' => $request->invoice_number,
+            'fiscal_data' => $request->fiscal_data,
+            'order_date' => $request->order_date,
+            'delivery_address' => $request->delivery_address,
+            'notes' => $request->notes,
+            'order_status' => $request->order_status,
+        
+        ]);
         return redirect()->route('orders.index')->with('success', 'Order updated successfully');
     }
 

@@ -1,3 +1,9 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'User Details')
+
+@section('content')
+
 <h1>Edit Customer</h1>
 
 <form action="{{ route('customers.update', $customer->id) }}" method="POST">
@@ -22,4 +28,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Update Customer</button>
+    <a href="{{ route('customers.index') }}" class="btn btn-secondary">Back to Customers</a>
 </form>
+
+@endsection

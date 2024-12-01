@@ -1,3 +1,8 @@
+@extends('layouts.bootstrap')
+
+@section('title', 'User Details')
+
+@section('content')
 <h1>Create User</h1>
 
 <form action="{{ route('users.store') }}" method="POST">
@@ -27,5 +32,8 @@
         </select>
     </div>
 
+    <br>
     <button type="submit" class="btn btn-primary">Create User</button>
+    <a href="{{ route('users.index') }}" class="btn btn-secondary">Back to Users</a>
 </form>
+@endsection

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('order_date');
             $table->string('delivery_address');
             $table->text('notes')->nullable();
-            $table->enum('status', ['Ordered', 'In Process', 'In Route', 'Delivered'])->default('Ordered');
+            $table->enum('order_status', ['Ordered', 'In Process', 'In Route', 'Delivered'])->default('Ordered');
             $table->string('route_photo')->nullable(); // Optional for route department
             $table->string('delivery_photo')->nullable(); // Optional for delivery proof
             $table->timestamps();

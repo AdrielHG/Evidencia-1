@@ -18,7 +18,7 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            'customer_number' => $this->faker->unique()->numerify('CUST-#####'),
+            'customer_number' => $this->faker->unique()->numerify('#####'),
             'name' => $this->faker->company,
             'contact_info' => $this->faker->email,
         ];
